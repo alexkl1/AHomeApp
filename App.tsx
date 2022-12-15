@@ -10,10 +10,12 @@
 
 import React from 'react';
 
-import {SafeAreaView, StatusBar, StyleSheet, useColorScheme, View,} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import AppNavigationContainer from './src/navigation/AppNavigationContainer';
+import {ThemeProvider} from '@rneui/themed';
+import theme from './src/theme/theme';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,35 +26,15 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <View style={{flex: 1, backgroundColor: 'blue'}}>
+    <ThemeProvider theme={theme}>
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
         <AppNavigationContainer />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
 export default App;

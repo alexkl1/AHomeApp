@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import RootStackParams from '../navigation/RootStackParams';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import MainTabParams from '../navigation/MainTabParams';
 
-type ScreenProps = NativeStackScreenProps<RootStackParams, 'Main', 'Main'>;
-const SettingsScreen = ({navigation, route}: ScreenProps) => {
+type ScreenProps = BottomTabScreenProps<MainTabParams, 'Settings', 'Settings'>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const SettingsScreen = ({ßnavigation, route}: ScreenProps) => {
   return (
     <View style={{flex: 1, marginTop: 100}}>
       <Text>Main screen setup {route.name} </Text>

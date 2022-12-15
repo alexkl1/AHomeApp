@@ -14,5 +14,10 @@ jest.mock('react-native-reanimated', () => {
   return Reanimated;
 });
 
+/*jest.mock('@rneui/themed',()=>{
+  const Module = {};
+  module.Icon = null;
+  return Module;
+});*/
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');

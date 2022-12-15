@@ -12,7 +12,9 @@ const RootStack = createNativeStackNavigator<RootStackParams>();
 const AppNavigationContainer = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Main">
+      <RootStack.Navigator
+        screenOptions={{headerShown: false}}
+        initialRouteName="Main">
         <Stack.Screen name="InitialSetup" component={InitialSetupScreen} />
         <Stack.Screen name="Main" component={MainTabNavigator} />
       </RootStack.Navigator>

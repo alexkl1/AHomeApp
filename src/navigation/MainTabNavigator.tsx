@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator<MainTabParams>();
 
 const MainTabNavigator = () => {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator screenOptions={{headerShown: false}} initialRouteName="Home">
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Cameras" component={CamerasScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />

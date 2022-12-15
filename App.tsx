@@ -16,6 +16,11 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import AppNavigationContainer from './src/navigation/AppNavigationContainer';
 import {ThemeProvider} from '@rneui/themed';
 import theme from './src/theme/theme';
+import {Provider} from 'react-redux';
+import configureAppStore from './src/store/configureStore';
+import {PersistGate} from 'redux-persist/integration/react';
+
+const {store, persistor} = configureAppStore({});
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,13 +32,17 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <AppNavigationContainer />
-      </SafeAreaView>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <SafeAreaView style={backgroundStyle}>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <AppNavigationContainer />
+          </SafeAreaView>
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   );
 };

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // include this line for mocking react-native-gesture-handler
 import 'react-native-gesture-handler/jestSetup';
-
+import React from 'react';
 // include this section and the NativeAnimatedHelper section for mocking react-native-reanimated
 jest.useFakeTimers();
 jest.mock('react-native-reanimated', () => {
@@ -13,6 +13,14 @@ jest.mock('react-native-reanimated', () => {
 
   return Reanimated;
 });
+
+jest.mock('@rneui/themed', () => ({
+  // AirbnbRating: jest.fn()
+  Input: jest.fn(() => <></>),
+  Icon: jest.fn(() => <></>),
+  createTheme: jest.fn(() => {}),
+  ThemeProvider: jest.fn(({children}) => <>{children}</>),
+}));
 
 /*jest.mock('@rneui/themed',()=>{
   const Module = {};

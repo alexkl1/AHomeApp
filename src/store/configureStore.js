@@ -1,7 +1,8 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import appReducer from '../reducers/appReducer';
-import storage from 'redux-persist/lib/storage';
-import {persistReducer, persistStore} from 'redux-persist'; // defaults to localStorage for web
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {persistReducer, persistStore} from 'redux-persist';
+import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE,} from 'redux-persist/es/constants'; // defaults to localStorage for web
 
 //import monitorReducersEnhancer from './enhancers/monitorReducers';
 //import loggerMiddleware from './middleware/logger';
@@ -9,14 +10,35 @@ import {persistReducer, persistStore} from 'redux-persist'; // defaults to local
 export default function configureAppStore(preloadedState) {
   const persistConfig = {
     key: 'root',
-    storage,
+    storage: AsyncStorage,
   };
 
   const persistedReducer = persistReducer(persistConfig, appReducer);
 
   const store = configureStore({
     reducer: persistedReducer,
-    middleware: [...getDefaultMiddleware()],
+    middleware: getDefaultMiddleware => {
+      let mw = getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      });
+      /*if (__DEV__) {
+        const actionsBlacklist = [];
+        const actionsWhitelist = [];
+        const actionReplayDelay = 500;
+        const reduxDebugger = require('redux-middleware-flipper').default;
+        mw.push(
+          reduxDebugger({
+            actionsBlacklist,
+            actionsWhitelist,
+            actionReplayDelay,
+          }),
+        );
+        console.log(mw);
+      }*/
+      return mw;
+    },
     preloadedState,
     //enhancers: [monitorReducersEnhancer],
   });

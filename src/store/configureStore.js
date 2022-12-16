@@ -2,20 +2,29 @@ import {configureStore} from '@reduxjs/toolkit';
 import appReducer from '../reducers/appReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer, persistStore} from 'redux-persist';
-import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE,} from 'redux-persist/es/constants'; // defaults to localStorage for web
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist/es/constants'; // defaults to localStorage for web
 
 //import monitorReducersEnhancer from './enhancers/monitorReducers';
 //import loggerMiddleware from './middleware/logger';
+const reduxDebugger = require('redux-flipper-colorized').default;
 
-export default function configureAppStore(preloadedState) {
+export default function configureAppStore() {
   const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
   };
 
+  const defaultState = require('./defaultstate.json');
   const persistedReducer = persistReducer(persistConfig, appReducer);
 
-  const store = configureStore({
+  let store = configureStore({
     reducer: persistedReducer,
     middleware: getDefaultMiddleware => {
       let mw = getDefaultMiddleware({
@@ -23,29 +32,19 @@ export default function configureAppStore(preloadedState) {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
       });
-      /*if (__DEV__) {
-        const actionsBlacklist = [];
-        const actionsWhitelist = [];
-        const actionReplayDelay = 500;
-        const reduxDebugger = require('redux-middleware-flipper').default;
-        mw.push(
-          reduxDebugger({
-            actionsBlacklist,
-            actionsWhitelist,
-            actionReplayDelay,
-          }),
-        );
+      if (__DEV__) {
+        mw.push(reduxDebugger());
         console.log(mw);
-      }*/
+      }
       return mw;
     },
-    preloadedState,
+    //preloadedState: defaultState,
     //enhancers: [monitorReducersEnhancer],
   });
 
-  if (process.env.NODE_ENV !== 'production' && module.hot) {
+  /*if (process.env.NODE_ENV !== 'production' && module.hot) {
     module.hot.accept('./reducers', () => store.replaceReducer(appReducer));
-  }
+  }*/
 
   let persistor = persistStore(store);
   return {store, persistor};

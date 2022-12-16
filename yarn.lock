@@ -2981,7 +2981,12 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
-dayjs@^1.8.15:
+cycle@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
+  integrity sha512-TVF6svNzeQCOpjCqsy0/CSy8VgObG3wXusJ73xW2GbG5rGx7lC8zxDSURicsXI2UsGdi2L0QNRCi745/wUDvsA==
+
+dayjs@^1.8.15, dayjs@^1.8.29:
   version "1.11.7"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
   integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
@@ -6043,6 +6048,11 @@ react-native-codegen@^0.71.3:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-flipper@^0.176.1:
+  version "0.176.1"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.176.1.tgz#fdf01e09160660d1c833d537909244965481275e"
+  integrity sha512-kioHzO9JzA2ReW9LfopIEUXeD6gDp3Mw6KjQbELvoLVIEMvCfGz59akezw4l/S8i6qkFVcnwh5c/7Z+L3nthQA==
+
 react-native-gesture-handler@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.8.0.tgz#ef9857871c10663c95a51546225b6e00cd4740cf"
@@ -6235,6 +6245,19 @@ recast@^0.20.4:
     esprima "~4.0.0"
     source-map "~0.6.1"
     tslib "^2.0.1"
+
+redux-flipper-colorized@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/redux-flipper-colorized/-/redux-flipper-colorized-2.0.5.tgz#bc4eb702f743fb4388efc42ccfed4ebb87370f2e"
+  integrity sha512-Zx2fTQLuvquNQl0pqAjI3Pb9b/PVyYrmioTa6VX+SMhrD7S6tratVIPjlzmeshFvwlXI0h7sEDm8fwRO/UXFnA==
+  dependencies:
+    cycle "^1.0.3"
+    dayjs "^1.8.29"
+
+redux-middleware-flipper@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/redux-middleware-flipper/-/redux-middleware-flipper-1.0.9.tgz#cdcb21e1a6500c1c94d5d5a2d7ac02cb4382c60a"
+  integrity sha512-8TrWjHpnj/lFuy5VLVsidHwnOf5TGAxsJNaBCopx8Nreda6VjjSazfWF4WyIe8FVkOWiIyOkbrKilbVsuzUwlw==
 
 redux-persist@^6.0.0:
   version "6.0.0"

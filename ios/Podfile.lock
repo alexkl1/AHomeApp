@@ -297,6 +297,8 @@ PODS:
   - React-jsinspector (0.71.0-rc.4)
   - React-logger (0.71.0-rc.4):
     - glog
+  - react-native-flipper (0.176.1):
+    - React-Core
   - react-native-safe-area-context (4.4.1):
     - RCT-Folly
     - RCTRequired
@@ -469,6 +471,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-flipper (from `../node_modules/react-native-flipper`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -548,6 +551,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-flipper:
+    :path: "../node_modules/react-native-flipper"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -621,6 +626,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: ac2d82b86fc05e2dd4989c04cc17271fc97f1e64
   React-jsinspector: e7f24be02178a7a2b29a5706ccf9e478f6a708eb
   React-logger: bfba604c0fe56388474e0b2bdcb817ef54174f32
+  react-native-flipper: 7e4b1c3fe1a2eecbe7304e5ff6b89231b3ec61dc
   react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
   React-perflogger: af2376aeb1bae3fa971d0a5511555137d74f7339
   React-RCTActionSheet: b6d47e3f432d59fb20ea1f73d2d0e50dc16aa7c1

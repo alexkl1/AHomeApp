@@ -6,6 +6,7 @@ import MainTabParams from './MainTabParams';
 import CamerasScreen from '../screens/CamerasScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import {Icon} from '@rneui/themed';
+import useTranslations from '../hooks/useTranslations';
 
 const Tab = createBottomTabNavigator<MainTabParams>();
 
@@ -40,11 +41,24 @@ const screenOptions = ({route}: {route: {name: string}}) => ({
 });
 
 const MainTabNavigator = () => {
+  const T = useTranslations();
   return (
     <Tab.Navigator screenOptions={screenOptions} initialRouteName="Home">
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Cameras" component={CamerasScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Home"
+        options={{title: T.Screen_Home}}
+        component={HomeScreen}
+      />
+      <Tab.Screen
+        name="Cameras"
+        options={{title: T.Screen_Cameras}}
+        component={CamerasScreen}
+      />
+      <Tab.Screen
+        name="Settings"
+        options={{title: T.Screen_Cameras}}
+        component={SettingsScreen}
+      />
     </Tab.Navigator>
   );
 };

@@ -5,10 +5,11 @@ const initialState = {
 };
 
 const appReducer = (state = initialState, action) => {
-  switch (action) {
+  switch (action?.type) {
     case SWITCHLANGUAGE:
-      return state;
+      return {...state, locale: action?.payload};
   }
+  return state;
 };
 
 export default appReducer;

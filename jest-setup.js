@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // include this line for mocking react-native-gesture-handler
 import 'react-native-gesture-handler/jestSetup';
 import React from 'react';
@@ -12,6 +11,13 @@ jest.mock('react-native-reanimated', () => {
   Reanimated.default.call = () => {};
 
   return Reanimated;
+});
+
+jest.mock('@react-native-async-storage/async-storage', () => {
+  return {
+    get: jest.fn(() => null),
+    set: jest.fn(() => null),
+  };
 });
 
 jest.mock('@rneui/themed', () => ({

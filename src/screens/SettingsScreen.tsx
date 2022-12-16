@@ -11,8 +11,8 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
   console.log('test');
 
   const onPress = () => {
-      console.log("Presss");
-      console.log("rss");
+    console.log('Presss');
+    console.log('rss');
   };
 
   return (

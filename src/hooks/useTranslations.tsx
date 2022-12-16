@@ -26,7 +26,10 @@ type translationKeys = {
 
 const useTranslations = (): translationKeys => {
   const locale = useSelector((state: stateType) => state?.locale ?? 'en');
-  return translations[locale] as translationKeys;
+  return Object.assign(
+    translations.en,
+    translations[locale],
+  ) as translationKeys;
 };
 
 export default useTranslations;

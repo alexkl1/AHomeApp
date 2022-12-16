@@ -2,5 +2,6 @@
   "Screen_Settings": "Настройки",
   "Screen_Home": "Главная",
   "Screen_Cameras": "Камеры",
-  "Language": "Язык"
+  "Language": "Язык",
+  "Sensors_No": "Нет сконфигурированных датчиков"
 }

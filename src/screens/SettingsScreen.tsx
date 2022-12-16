@@ -42,9 +42,7 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
     dispatch({type: SWITCHLANGUAGE, payload: newLocale});
   };
   return (
-    <AppScreen>
-      <Text h1>{T.Screen_Settings}</Text>
-
+    <AppScreen title={T.Screen_Settings}>
       <View style={[styles.topMargin, styles.flex]}>
         <Text h4>{T.Language}</Text>
         <ButtonGroup

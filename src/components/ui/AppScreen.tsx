@@ -1,10 +1,12 @@
 /** generic application screen with paddings **/
 import React, {PropsWithChildren} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {Text} from '@rneui/themed';
 
 type Props = PropsWithChildren & {
-  noHPadding?: boolean | undefined; // disable horizontal padding
-  noVPadding?: boolean | undefined; // disable vertical padding
+  noHPadding?: boolean; // disable horizontal padding
+  noVPadding?: boolean; // disable vertical padding
+  title?: string; // screen title
 };
 
 const makeStyleSheet = (props: Props) =>
@@ -14,10 +16,22 @@ const makeStyleSheet = (props: Props) =>
       marginHorizontal: props?.noHPadding ? 0 : 5,
       marginVertical: props?.noVPadding ? 0 : 5,
     },
+    title: {
+      marginBottom: 30,
+    },
   });
 const AppScreen = (props: Props) => {
   const styles = makeStyleSheet(props);
-  return <View style={styles.screen}>{props.children}</View>;
+  return (
+    <View style={styles.screen}>
+      {props?.title && (
+        <View style={styles.title}>
+          <Text h3>{props.title}</Text>
+        </View>
+      )}
+      {props.children}
+    </View>
+  );
 };
 
 export default AppScreen;

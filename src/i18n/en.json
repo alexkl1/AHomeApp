@@ -2,5 +2,8 @@
   "Screen_Settings": "Settings",
   "Screen_Home": "Home",
   "Screen_Cameras": "Cameras",
-  "Language": "Language"
+  "Language": "Language",
+
+  "Sensors_No": "No sensors configured",
+  "Cameras_No": "No cameras configured"
 }

@@ -2,6 +2,9 @@ import {SWITCHLANGUAGE} from '../actions/actions';
 
 const initialState = {
   locale: 'en',
+  sensors: null,
+  cameras: null,
+  onboarding: null,
 };
 
 const appReducer = (state = initialState, action) => {

@@ -2,9 +2,16 @@
   "Screen_Settings": "Settings",
   "Screen_Home": "Home",
   "Screen_Cameras": "Cameras",
+  "Screen_Login": "Login",
+  "Screen_Initial": "Initial",
   "Language": "Language",
-
+  "Login": "Login",
+  "Password": "Password",
   "Sensors_No": "No sensors configured",
   "Cameras_No": "No cameras configured",
-  "Cameras_configure": "Please configure cameras in your account"
+  "Cameras_configure": "Please configure cameras in your account",
+  "Login_Text1": "Please enter your login and password for access. You can create new account on website",
+  "Login_Text2": "You can use demo/demo for test access",
+  "Button_Login": "Login",
+  "Error_fields": "Please fill in all fields",
 }

@@ -5,5 +5,6 @@
   "Language": "Language",
 
   "Sensors_No": "No sensors configured",
-  "Cameras_No": "No cameras configured"
+  "Cameras_No": "No cameras configured",
+  "Cameras_configure": "Please configure cameras in your account"
 }

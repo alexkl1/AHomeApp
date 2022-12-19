@@ -56,7 +56,7 @@ const MainTabNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        options={{title: T.Screen_Cameras}}
+        options={{title: T.Screen_Settings}}
         component={SettingsScreen}
       />
     </Tab.Navigator>

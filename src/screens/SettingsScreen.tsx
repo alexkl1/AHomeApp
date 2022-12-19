@@ -13,10 +13,7 @@ import {SWITCHLANGUAGE} from '../actions/actions';
 import useTranslations from '../hooks/useTranslations';
 import {StyleSheet, View} from 'react-native';
 import {version} from '../../package.json';
-
-type settingsState = {
-  locale: localeTypes;
-};
+import {RootState} from '../store/configureStore';
 
 type indexMapperType = {
   [Property in localeTypes as string]: number;
@@ -29,7 +26,7 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
   console.log('test');
 
   const dispatch = useDispatch();
-  const locale = useSelector((state: settingsState) => state?.locale ?? 'en');
+  const locale = useSelector((state: RootState) => state?.app.locale ?? 'en');
   const localeButtonIndexMapper: indexMapperType = {en: 0, ru: 1};
   const localeSelectedIndex = localeButtonIndexMapper[locale];
   const T = useTranslations();

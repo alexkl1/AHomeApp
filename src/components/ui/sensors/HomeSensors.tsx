@@ -2,9 +2,8 @@
  * Home screen sensors display
  */
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {Text} from '@rneui/themed';
-import useTranslations from '../../../hooks/useTranslations';
 import {useSelector} from 'react-redux';
 import NoSensors from './NoSensors';
 

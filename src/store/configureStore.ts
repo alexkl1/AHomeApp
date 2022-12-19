@@ -9,29 +9,35 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from 'redux-persist/es/constants'; // defaults to localStorage for web
+} from 'redux-persist/es/constants';
+import {appApi} from '../api/apiService'; // defaults to localStorage for web
 
 //import monitorReducersEnhancer from './enhancers/monitorReducers';
 //import loggerMiddleware from './middleware/logger';
 const reduxDebugger = require('redux-flipper-colorized').default;
 
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+};
+
+const persistedReducer = persistReducer(persistConfig, appReducer);
+const rootReducer = {
+  app: persistedReducer,
+  [appApi.reducerPath]: appApi.reducer,
+};
+export type RootState = {app: ReturnType<typeof persistedReducer>};
+
 export default function configureAppStore() {
-  const persistConfig = {
-    key: 'root',
-    storage: AsyncStorage,
-  };
-
-  const defaultState = require('./defaultstate.json');
-  const persistedReducer = persistReducer(persistConfig, appReducer);
-
   let store = configureStore({
-    reducer: persistedReducer,
+    reducer: rootReducer,
     middleware: getDefaultMiddleware => {
       let mw = getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
       });
+      mw.push(appApi.middleware);
       if (__DEV__) {
         mw.push(reduxDebugger());
         console.log(mw);
@@ -47,5 +53,6 @@ export default function configureAppStore() {
   }*/
 
   let persistor = persistStore(store);
+
   return {store, persistor};
 }

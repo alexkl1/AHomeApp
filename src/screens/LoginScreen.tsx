@@ -10,6 +10,7 @@ import {StyleSheet, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import RootStackParams from '../navigation/RootStackParams';
 import ErrorOverlay from '../components/ui/ErrorOverlay';
+import {useAuthMutation} from '../api/apiService';
 
 type errorObject = {
   text: string;
@@ -22,20 +23,23 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
   const theme = useTheme();
   //const dispatch = useDispatch();
   const T = useTranslations();
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorObject, setErrorObject] = useState<errorObject>(null);
+  const [authUser, {isLoading, isSuccess, error, isError}] = useAuthMutation();
 
   const onPress = () => {
     console.log('login');
 
     if (login?.length > 0 && password?.length > 0) {
+      console.log('do login');
+      authUser({login: login, password: password});
     } else {
       console.log('no login / password');
       setErrorObject({text: T.Error_fields});
     }
   };
 
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorObject, setErrorObject] = useState<errorObject>(null);
   const dismissError = () => setErrorObject(null);
 
   return (

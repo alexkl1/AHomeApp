@@ -11,7 +11,7 @@ export const appApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: APIURL,
     prepareHeaders: (headers, {getState}) => {
-      const token = (getState() as RootState).authToken;
+      const token = (getState() as RootState)?.app?.authToken;
       if (token) {
         headers.set('authentication', `Bearer ${token}`);
       }
@@ -25,12 +25,20 @@ export const appApi = createApi({
     getCameras: builder.query<Cameras, null>({
       query: () => '/cameras',
     }),
-    auth: builder.query<AuthResult, AuthRequest>({
-      query: () => '/auth',
+    auth: builder.mutation<AuthResult, AuthRequest>({
+      query: data => {
+        return {url: 'auth', method: 'POST', body: data};
+      },
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const {useGetSensorsQuery} = appApi;
+export const {
+  useGetSensorsQuery,
+  useAuthMutation,
+  reducerPath,
+  reducer,
+  middleware,
+} = appApi;

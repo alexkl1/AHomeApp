@@ -25,7 +25,7 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
   }
   return (
     <AppScreen title={T.Screen_Cameras}>
-      <View style={{flex: 1}}>
+      <View style={styles.flex1}>
         <Text>Cameras screen here ... </Text>
       </View>
     </AppScreen>
@@ -34,6 +34,7 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
 
 const styles = StyleSheet.create({
   center: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  flex1: {flex: 1},
 });
 
 export default CamerasScreen;

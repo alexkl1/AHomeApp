@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import MainTabParams from '../navigation/MainTabParams';
 import AppScreen from '../components/ui/AppScreen';
@@ -13,14 +13,17 @@ const MainScreen = ({navigation, route}: ScreenProps) => {
   const T = useTranslations();
   return (
     <AppScreen title={T.Screen_Home}>
-      <View style={{flex: 3}}>
+      <View style={styles.flex3}>
         <HomeSensors />
       </View>
-      <View style={{flex: 1}}>
+      <View style={styles.flex1}>
         <HomeCameras />
       </View>
     </AppScreen>
   );
 };
-
+const styles = StyleSheet.create({
+  flex1: {flex: 1},
+  flex3: {flex: 3},
+});
 export default MainScreen;

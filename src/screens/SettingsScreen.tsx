@@ -33,7 +33,7 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
 
   const setLocale = (index: number) => {
     const newLocale = Object.keys(localeButtonIndexMapper).find(
-      i => localeButtonIndexMapper[i] == index,
+      i => localeButtonIndexMapper[i] === index,
     );
     console.log(`Set new locale ${index} ${newLocale}`);
     dispatch({type: SWITCHLANGUAGE, payload: newLocale});
@@ -46,7 +46,7 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
           buttons={['English', 'Русский']}
           selectedIndex={localeSelectedIndex}
           onPress={setLocale}
-          containerStyle={{marginBottom: 20}}
+          containerStyle={styles.switchMargin}
         />
       </View>
       <View style={styles.bottomVer}>
@@ -59,6 +59,7 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
 const styles = StyleSheet.create({
   topMargin: {marginTop: 30},
   bottomVer: {alignSelf: 'flex-end', marginRight: 10},
+  switchMargin: {marginBottom: 20},
   flex: {flex: 1},
 });
 

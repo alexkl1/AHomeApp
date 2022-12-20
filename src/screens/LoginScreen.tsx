@@ -43,7 +43,7 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
       <ErrorOverlay
         onDismiss={dismissError}
         isVisible={errorObject !== null}
-        text={errorObject?.text}
+        text={errorObject?.text ?? ''}
       />
       <View style={[styles.vCenter, styles.flex]}>
         <View style={styles.box}>

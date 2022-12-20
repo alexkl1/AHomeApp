@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, Icon, Overlay, Text} from '@rneui/themed';
-import {StyleSheet} from 'react-native';
+import {Button, Overlay, Text} from '@rneui/themed';
+import {StyleSheet, View} from 'react-native';
 
 type props = {
   /**
@@ -15,21 +15,13 @@ type props = {
 const ErrorOverlay = ({onDismiss, isVisible, text}: props) => {
   return (
     <Overlay isVisible={isVisible} onBackdropPress={onDismiss}>
-      <Text style={styles.textPrimary}>Error</Text>
-      <Text style={styles.textSecondary}>{text}</Text>
-      <Button
-        icon={
-          <Icon
-            name="wrench"
-            type="font-awesome"
-            color="white"
-            size={25}
-            iconStyle={{marginRight: 10}}
-          />
-        }
-        title="OK"
-        onPress={onDismiss}
-      />
+      <View style={styles.innerBox}>
+        <Text style={styles.textPrimary}>Error</Text>
+        <Text style={styles.textSecondary}>{text}</Text>
+        <View style={styles.btn}>
+          <Button title="OK" onPress={onDismiss} />
+        </View>
+      </View>
     </Overlay>
   );
 };
@@ -37,6 +29,14 @@ const ErrorOverlay = ({onDismiss, isVisible, text}: props) => {
 const styles = StyleSheet.create({
   button: {
     margin: 10,
+  },
+  innerBox: {
+    minWidth: '70%',
+    paddingHorizontal: 30,
+    paddingBottom: 10,
+  },
+  btn: {
+    marginTop: 30,
   },
   textPrimary: {
     marginVertical: 20,

@@ -1,6 +1,12 @@
 // Need to use the React-specific entry point to import createApi
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {AuthRequest, AuthResult, Cameras, Sensors} from './apiTypes';
+import {
+  AuthRequest,
+  AuthResult,
+  Cameras,
+  Sensors,
+  SnapShotRequest,
+} from './apiTypes';
 import {RootState} from '../store/configureStore';
 //import type {Pokemon} from './types';
 import Config from 'react-native-config';
@@ -8,6 +14,7 @@ import {setCredentials} from '../reducers/appReducer';
 
 //const APIURL = Config.API_URL;
 const APIURL = 'http://localhost:3000';
+const RNFS = require('react-native-fs');
 // Define a service using a base URL and expected endpoints
 console.log('APIURL=', APIURL);
 export const appApi = createApi({
@@ -17,7 +24,7 @@ export const appApi = createApi({
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as RootState)?.app?.authToken;
       if (token) {
-        headers.set('authentication', `Bearer ${token}`);
+        headers.set('Authorization', `Bearer ${token}`);
       }
       return headers;
     },
@@ -28,6 +35,27 @@ export const appApi = createApi({
     }),
     getCameras: builder.query<Cameras, null>({
       query: () => '/cameras',
+    }),
+    getSnapshot: builder.query<any, SnapShotRequest>({
+      queryFn: async (
+        args,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        {signal, dispatch, getState},
+      ) => {
+        //console.log('START SNAPSHOT with ', args, extraOptions);
+        const fname = RNFS.DocumentDirectoryPath + `/cam_${args.id}.jpg`;
+        const token = (getState() as RootState)?.app?.authToken;
+        const {promise} = RNFS.downloadFile({
+          fromUrl: `${APIURL}/snapshot/?id=${args?.id}`,
+          headers: {authorization: `Bearer ${token}`},
+          background: false,
+          toFile: fname,
+          cacheable: false,
+        });
+        const result = await promise;
+        //console.log('jobid=', jobId, 'Result=', result);
+        return {data: {lastUpdate: Date.now(), result: result}};
+      },
     }),
     auth: builder.mutation<AuthResult, AuthRequest>({
       query: data => {
@@ -57,8 +85,12 @@ export const appApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetSensorsQuery,
+  useGetCamerasQuery,
+  useGetSnapshotQuery,
   useAuthMutation,
   reducerPath,
   reducer,
   middleware,
 } = appApi;
+
+export default appApi;

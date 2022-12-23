@@ -1,5 +1,6 @@
 type Sensors = Array<{
   id: string;
+  name: string;
   minValue?: number;
   maxValue?: number;
   value: number;
@@ -7,6 +8,7 @@ type Sensors = Array<{
 
 type AuthResult = {
   token: string;
+  user: string;
 };
 type AuthRequest = {
   login: string;

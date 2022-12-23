@@ -26,7 +26,6 @@ const rootReducer = {
   app: persistedReducer,
   [appApi.reducerPath]: appApi.reducer,
 };
-export type RootState = {app: ReturnType<typeof persistedReducer>};
 
 export default function configureAppStore() {
   let store = configureStore({
@@ -56,3 +55,5 @@ export default function configureAppStore() {
 
   return {store, persistor};
 }
+
+export type RootState = {app: ReturnType<typeof persistedReducer>};

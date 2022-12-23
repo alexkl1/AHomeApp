@@ -5,6 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios uninstall": "xcrun simctl uninstall booted com.akolt.ahomeapp.ios\n",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
@@ -21,6 +22,7 @@
     "axios": "^1.2.1",
     "react": "18.2.0",
     "react-native": "0.71.0-rc.4",
+    "react-native-config": "^1.4.11",
     "react-native-flipper": "^0.176.1",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-reanimated": "^2.13.0",

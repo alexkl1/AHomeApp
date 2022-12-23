@@ -1,7 +1,7 @@
 /**
  * Application login screen if not authenticated
  */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Input, Text, useTheme} from '@rneui/themed';
 //import {useDispatch} from 'react-redux';
 import AppScreen from '../components/ui/AppScreen';
@@ -11,6 +11,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import RootStackParams from '../navigation/RootStackParams';
 import ErrorOverlay from '../components/ui/ErrorOverlay';
 import {useAuthMutation} from '../api/apiService';
+import {selectCurrentToken} from '../reducers/appReducer';
+import {useSelector} from 'react-redux';
 
 type errorObject = {
   text: string;
@@ -19,7 +21,7 @@ type errorObject = {
 type ScreenProps = NativeStackScreenProps<RootStackParams, 'Login'>;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const LoginScreen = ({navigation, route}: ScreenProps) => {
-  console.log('login screen');
+  //console.log('login screen');
   const theme = useTheme();
   //const dispatch = useDispatch();
   const T = useTranslations();
@@ -27,6 +29,7 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
   const [password, setPassword] = useState('');
   const [errorObject, setErrorObject] = useState<errorObject>(null);
   const [authUser, {isLoading, isSuccess, error, isError}] = useAuthMutation();
+  const authToken = useSelector(selectCurrentToken);
 
   const onPress = () => {
     console.log('login');
@@ -40,7 +43,30 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
     }
   };
 
+  // redirect after login
+  useEffect(() => {
+    console.log('AuthToken effect');
+    if (authToken && authToken.length > 0) {
+      console.log('Got valid token. Navigate to main');
+      navigation.navigate('Main');
+    }
+  }, [authToken, navigation]);
+
   const dismissError = () => setErrorObject(null);
+
+  const styles = StyleSheet.create({
+    topMargin: {marginTop: 30},
+    box: {width: '90%', alignSelf: 'center'},
+    bottomVer: {alignSelf: 'flex-end', marginRight: 10},
+    vCenter: {justifyContent: 'center'},
+    loginBox: {width: '80%', alignSelf: 'center'},
+    buttonBox: {marginTop: 30, width: '80%', alignSelf: 'center'},
+    errorBox: {alignSelf: 'center', marginTop: 10},
+    errorText: {color: theme.theme.colors.error},
+    flex: {flex: 1},
+
+    title: {marginBottom: 15, alignSelf: 'center', width: '80%'},
+  });
 
   return (
     <AppScreen>
@@ -75,24 +101,23 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
           </View>
 
           <View style={styles.buttonBox}>
-            <Button onPress={onPress} title={T.Button_Login} />
+            <Button
+              loading={isLoading}
+              onPress={onPress}
+              title={T.Button_Login}
+            />
           </View>
+          {isError && (
+            <View style={styles.errorBox}>
+              <Text style={styles.errorText}>
+                {error?.status} {JSON.stringify(error?.data)}
+              </Text>
+            </View>
+          )}
         </View>
       </View>
     </AppScreen>
   );
 };
-
-const styles = StyleSheet.create({
-  topMargin: {marginTop: 30},
-  box: {width: '90%', alignSelf: 'center'},
-  bottomVer: {alignSelf: 'flex-end', marginRight: 10},
-  vCenter: {justifyContent: 'center'},
-  loginBox: {width: '80%', alignSelf: 'center'},
-  buttonBox: {marginTop: 30, width: '80%', alignSelf: 'center'},
-
-  flex: {flex: 1},
-  title: {marginBottom: 15, alignSelf: 'center', width: '80%'},
-});
 
 export default LoginScreen;

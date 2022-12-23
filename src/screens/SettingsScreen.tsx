@@ -9,11 +9,11 @@ import {ButtonGroup} from '@rneui/themed';
 import {useDispatch, useSelector} from 'react-redux';
 import localeTypes from '../i18n/localetypes';
 import AppScreen from '../components/ui/AppScreen';
-import {SWITCHLANGUAGE} from '../actions/actions';
 import useTranslations from '../hooks/useTranslations';
 import {StyleSheet, View} from 'react-native';
 import {version} from '../../package.json';
 import {RootState} from '../store/configureStore';
+import {switchLanguage} from '../reducers/appReducer';
 
 type indexMapperType = {
   [Property in localeTypes as string]: number;
@@ -32,11 +32,12 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
   const T = useTranslations();
 
   const setLocale = (index: number) => {
-    const newLocale = Object.keys(localeButtonIndexMapper).find(
-      i => localeButtonIndexMapper[i] === index,
-    );
+    const newLocale =
+      Object.keys(localeButtonIndexMapper).find(
+        i => localeButtonIndexMapper[i] === index,
+      ) ?? 'en';
     console.log(`Set new locale ${index} ${newLocale}`);
-    dispatch({type: SWITCHLANGUAGE, payload: newLocale});
+    dispatch(switchLanguage(newLocale));
   };
   return (
     <AppScreen title={T.Screen_Settings}>

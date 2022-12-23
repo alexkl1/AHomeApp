@@ -3,9 +3,13 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {AuthRequest, AuthResult, Cameras, Sensors} from './apiTypes';
 import {RootState} from '../store/configureStore';
 //import type {Pokemon} from './types';
+import Config from 'react-native-config';
+import {setCredentials} from '../reducers/appReducer';
 
-const APIURL = 'https://api.ahomeapp.online';
+//const APIURL = Config.API_URL;
+const APIURL = 'http://localhost:3000';
 // Define a service using a base URL and expected endpoints
+console.log('APIURL=', APIURL);
 export const appApi = createApi({
   reducerPath: 'appApi',
   baseQuery: fetchBaseQuery({
@@ -27,7 +31,23 @@ export const appApi = createApi({
     }),
     auth: builder.mutation<AuthResult, AuthRequest>({
       query: data => {
-        return {url: 'auth', method: 'POST', body: data};
+        return {
+          url: 'auth',
+          method: 'POST',
+          body: data,
+        };
+      },
+      onQueryStarted: async (args, {dispatch, queryFulfilled}) => {
+        try {
+          const result = await queryFulfilled;
+          console.log('Query result: ', result);
+          await dispatch(
+            setCredentials({
+              user: result?.data.user,
+              token: result?.data.token,
+            }),
+          );
+        } catch (error) {}
       },
     }),
   }),

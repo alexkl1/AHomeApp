@@ -17,7 +17,7 @@ const makeStyleSheet = (props: Props) =>
       marginVertical: props?.noVPadding ? 0 : 5,
     },
     title: {
-      marginBottom: 30,
+      marginBottom: 5,
     },
   });
 const AppScreen = (props: Props) => {

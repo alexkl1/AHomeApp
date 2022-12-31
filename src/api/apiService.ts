@@ -9,11 +9,12 @@ import {
 } from './apiTypes';
 import {RootState} from '../store/configureStore';
 //import type {Pokemon} from './types';
-import Config from 'react-native-config';
+//import Config from 'react-native-config';
 import {setCredentials} from '../reducers/appReducer';
+// @ts-ignore
 
 //const APIURL = Config.API_URL;
-const APIURL = 'http://localhost:3000';
+const APIURL = 'http://10.243.161.195:3000';
 const RNFS = require('react-native-fs');
 // Define a service using a base URL and expected endpoints
 console.log('APIURL=', APIURL);
@@ -45,16 +46,21 @@ export const appApi = createApi({
         //console.log('START SNAPSHOT with ', args, extraOptions);
         const fname = RNFS.DocumentDirectoryPath + `/cam_${args.id}.jpg`;
         const token = (getState() as RootState)?.app?.authToken;
-        const {promise} = RNFS.downloadFile({
-          fromUrl: `${APIURL}/snapshot/?id=${args?.id}`,
-          headers: {authorization: `Bearer ${token}`},
-          background: false,
-          toFile: fname,
-          cacheable: false,
-        });
-        const result = await promise;
-        //console.log('jobid=', jobId, 'Result=', result);
-        return {data: {lastUpdate: Date.now(), result: result}};
+        try {
+          const {promise} = RNFS.downloadFile({
+            fromUrl: `${APIURL}/snapshot/?id=${args?.id}`,
+            headers: {authorization: `Bearer ${token}`},
+            background: false,
+            toFile: fname,
+            cacheable: false,
+          });
+          const result = await promise;
+          //console.log('jobid=', jobId, 'Result=', result);
+          return {data: {lastUpdate: Date.now(), result: result}};
+        } catch (e) {
+          console.log('Failed to get snapshot');
+          return {error: 'Failed to get snapshot: ' + JSON.stringify(e)};
+        }
       },
     }),
     auth: builder.mutation<AuthResult, AuthRequest>({

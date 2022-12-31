@@ -2,8 +2,12 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useTheme} from '@rneui/themed';
 import {useGetSnapshotQuery} from '../../../api/apiService';
-import {Image} from '@rneui/base';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {Image} from 'react-native';
+import {
+  useIsFocused,
+  useNavigation,
+} from '@react-navigation/native';
+import {ScreenProps} from '../../../screens/HomeScreen';
 
 const RNFS = require('react-native-fs');
 
@@ -13,18 +17,19 @@ type Props = {
 const CameraSlide = ({data}: Props) => {
   const theme = useTheme();
   const isFocused = useIsFocused();
-  const navigation = useNavigation();
+  const navigation = useNavigation<ScreenProps>();
   const {} = useGetSnapshotQuery(
     {id: data?.id},
     isFocused
       ? {
-          pollingInterval: 5000,
+          pollingInterval: 2000,
         }
       : {},
   );
 
   const onSwitchCameraScreen = (id: string): void => {
     console.log('Navigate camera screen ', id);
+    // @ts-ignore
     navigation.navigate('Cameras', {activeCameraId: id});
   };
 
@@ -40,10 +45,12 @@ const CameraSlide = ({data}: Props) => {
   });
   const fname = RNFS.DocumentDirectoryPath + `/cam_${data.id}.jpg`;
   //console.log('Slide render ', isFocused);
+  const key = 'img_' + fname + Date.now().toString();
   return (
     <View style={styles.viewBox}>
       <TouchableOpacity onPress={() => onSwitchCameraScreen(data.id)}>
         <Image
+          key={key}
           style={styles.image}
           source={{
             uri: 'file://' + fname,

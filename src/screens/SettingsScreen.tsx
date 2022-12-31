@@ -2,7 +2,7 @@
  * Settings screen
  */
 import React from 'react';
-import {Text} from '@rneui/themed';
+import {Button, Text} from '@rneui/themed';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import MainTabParams from '../navigation/MainTabParams';
 import {ButtonGroup} from '@rneui/themed';
@@ -14,6 +14,7 @@ import {StyleSheet, View} from 'react-native';
 import {version} from '../../package.json';
 import {RootState} from '../store/configureStore';
 import {switchLanguage} from '../reducers/appReducer';
+import {logout} from '../reducers/appReducer';
 
 type indexMapperType = {
   [Property in localeTypes as string]: number;
@@ -39,9 +40,12 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
     console.log(`Set new locale ${index} ${newLocale}`);
     dispatch(switchLanguage(newLocale));
   };
+  const onLogout = () => {
+    dispatch(logout());
+  };
   return (
     <AppScreen title={T.Screen_Settings}>
-      <View style={[styles.topMargin, styles.flex]}>
+      <View style={[styles.topMargin]}>
         <Text h4>{T.Language}</Text>
         <ButtonGroup
           buttons={['English', 'Русский']}
@@ -50,6 +54,10 @@ const SettingsScreen = ({navigation, route}: ScreenProps) => {
           containerStyle={styles.switchMargin}
         />
       </View>
+      <View style={[styles.topMargin, styles.btn]}>
+        <Button title="Logout" onPress={onLogout} />
+      </View>
+      <View style={styles.flex} />
       <View style={styles.bottomVer}>
         <Text>Ver: {version}</Text>
       </View>
@@ -62,6 +70,7 @@ const styles = StyleSheet.create({
   bottomVer: {alignSelf: 'flex-end', marginRight: 10},
   switchMargin: {marginBottom: 20},
   flex: {flex: 1},
+  btn: {alignSelf: 'center', width: 150},
 });
 
 export default SettingsScreen;

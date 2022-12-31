@@ -28,7 +28,7 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errorObject, setErrorObject] = useState<errorObject>(null);
-  const [authUser, {isLoading, isSuccess, error, isError}] = useAuthMutation();
+  const [authUser, {isLoading, error, isError}] = useAuthMutation();
   const authToken = useSelector(selectCurrentToken);
 
   const onPress = () => {

@@ -5,16 +5,17 @@
 import React from 'react';
 import {useIsFocused} from '@react-navigation/native';
 import {useGetSnapshotQuery} from '../../../api/apiService';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 import {Image} from 'react-native';
 import RNFS from 'react-native-fs';
 
 type Props = {
   // camera ID
   cameraId: string;
+  onClick: () => void;
 };
 
-const CameraView = ({cameraId}: Props) => {
+const CameraView = ({cameraId, onClick}: Props) => {
   const isFocused = useIsFocused();
   const {} = useGetSnapshotQuery(
     {id: cameraId},
@@ -29,14 +30,16 @@ const CameraView = ({cameraId}: Props) => {
   const key = 'img_' + fname + Date.now().toString();
   return (
     <View>
-      <Image
-        key={key}
-        style={styles.image}
-        source={{
-          uri: 'file://' + fname,
-          scale: 1,
-        }}
-      />
+      <TouchableWithoutFeedback onPress={onClick}>
+        <Image
+          key={key}
+          style={styles.image}
+          source={{
+            uri: 'file://' + fname,
+            scale: 1,
+          }}
+        />
+      </TouchableWithoutFeedback>
     </View>
   );
 };

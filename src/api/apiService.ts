@@ -4,7 +4,7 @@ import {
   AuthRequest,
   AuthResult,
   Cameras,
-  Sensors,
+  SensorsResult,
   SnapShotRequest,
 } from './apiTypes';
 import {RootState} from '../store/configureStore';
@@ -31,7 +31,7 @@ export const appApi = createApi({
     },
   }),
   endpoints: builder => ({
-    getSensors: builder.query<Sensors, null>({
+    getSensors: builder.query<SensorsResult, null>({
       query: () => '/sensors',
     }),
     getCameras: builder.query<Cameras, null>({

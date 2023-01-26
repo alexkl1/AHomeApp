@@ -3,22 +3,18 @@
  */
 import React from 'react';
 import {View} from 'react-native';
-import {Text} from '@rneui/themed';
-import {useSelector} from 'react-redux';
 import NoSensors from './NoSensors';
-
-type RootState = {
-  sensors: [] | null;
-};
+import {useGetSensorsQuery} from '../../../api/apiService';
+import {TempSensorElement} from './TempSensorElement';
 
 const HomeSensors = () => {
-  //const T = useTranslations();
-  const sensors = useSelector((state: RootState) => state?.sensors);
+  const {data} = useGetSensorsQuery(null, {pollingInterval: 5000});
+  console.log('HomeSensors ', data);
 
   return (
     <View>
-      {sensors !== null && sensors?.length > 0 ? (
-        <Text>sensors....</Text>
+      {data !== undefined && data?.length > 0 ? (
+        data.map(i => <TempSensorElement key={'ksens_' + i?.id} data={i} />)
       ) : (
         <NoSensors />
       )}

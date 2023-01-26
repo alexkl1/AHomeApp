@@ -19,7 +19,7 @@ const CameraSlide = ({data}: Props) => {
     {id: data?.id},
     isFocused
       ? {
-          pollingInterval: 1000,
+          pollingInterval: 1500,
         }
       : {},
   );

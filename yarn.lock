@@ -1439,6 +1439,15 @@
   dependencies:
     merge-options "^3.0.4"
 
+"@react-native-community/art@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/art/-/art-1.2.0.tgz#386d95393f6042d9006f9d4bc6063fb898794460"
+  integrity sha512-a+ZcRGl/BzLa89yi33Mbn5SHavsEXqKUMdbfLf3U8MDLElndPqUetoJyGkv63+BcPO49UMWiQRP1YUz6/zfJ+A==
+  dependencies:
+    art "^0.10.3"
+    invariant "^2.2.4"
+    prop-types "^15.7.2"
+
 "@react-native-community/cli-clean@^10.0.0":
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-clean/-/cli-clean-10.0.0.tgz#09cc4c63116e81d3765ffedecc38387bcc7b4483"
@@ -2286,6 +2295,11 @@ array.prototype.tosorted@^1.1.1:
     es-abstract "^1.20.4"
     es-shim-unscopables "^1.0.0"
     get-intrinsic "^1.1.3"
+
+art@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/art/-/art-0.10.3.tgz#b01d84a968ccce6208df55a733838c96caeeaea2"
+  integrity sha512-HXwbdofRTiJT6qZX/FnchtldzJjS3vkLJxQilc3Xj+ma2MXjY4UAyQ0ls1XZYVnDvVIBiFZbC6QsvtW86TD6tQ==
 
 asap@~2.0.6:
   version "2.0.6"
@@ -6181,6 +6195,11 @@ react-native-screens@^3.18.2:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-simple-gauge@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-simple-gauge/-/react-native-simple-gauge-0.3.1.tgz#33db0824ce8daade3e5602e0c704826c0f287eb0"
+  integrity sha512-aOf18FeSkKnUM+AblnZhSoUZLA1tdCYlbA5SG06OdcCFpf0gtPwQ+bZtqmVztBq5j2Pg2o4UNxLw3u+/W2Jefg==
 
 react-native-size-matters@^0.4.0:
   version "0.4.0"

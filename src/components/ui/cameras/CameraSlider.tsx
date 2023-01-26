@@ -1,3 +1,6 @@
+/**
+ * Small Horizontal cameras list with realtime update.
+ */
 import {Cameras} from '../../../api/apiTypes';
 import React from 'react';
 import CameraSlide from './CameraSlide';

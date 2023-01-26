@@ -1,10 +1,12 @@
-type Sensors = Array<{
+type SensorInfo = {
   id: string;
+  type: string;
   name: string;
   minValue?: number;
   maxValue?: number;
   value: number;
-}>;
+};
+type SensorsResult = Array<SensorInfo>;
 
 type AuthResult = {
   token: string;
@@ -24,7 +26,8 @@ type SnapShotResponse = boolean;
 type Cameras = Array<{id: string; snapshotUrl: string}>;
 
 export type {
-  Sensors,
+  SensorsResult,
+  SensorInfo,
   Cameras,
   AuthResult,
   AuthRequest,

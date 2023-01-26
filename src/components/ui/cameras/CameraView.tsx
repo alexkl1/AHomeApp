@@ -21,7 +21,7 @@ const CameraView = ({cameraId, onClick}: Props) => {
     {id: cameraId},
     isFocused
       ? {
-          pollingInterval: 1000,
+          pollingInterval: 1500,
         }
       : {},
   );

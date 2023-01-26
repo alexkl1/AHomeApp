@@ -110,7 +110,8 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
           {isError && (
             <View style={styles.errorBox}>
               <Text style={styles.errorText}>
-                {error?.status} {JSON.stringify(error?.data)}
+                {T.Error_Login}
+                {/*{error?.status} {JSON.stringify(error?.data)}*/}
               </Text>
             </View>
           )}

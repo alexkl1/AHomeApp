@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {StyleSheet, useWindowDimensions, View} from 'react-native';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import MainTabParams from '../navigation/MainTabParams';
@@ -14,7 +14,7 @@ import FullScreenCamera from '../components/ui/cameras/FullScreenCamera';
 
 type ScreenProps = BottomTabScreenProps<MainTabParams, 'Cameras', 'Cameras'>;
 
-const findCameraIndex = (data: Cameras, activeCameraId: string) => {
+const findCameraIndex = (data: Cameras, activeCameraId: string | undefined) => {
   return data.findIndex(i => i?.id === activeCameraId) ?? 0;
 };
 
@@ -24,16 +24,24 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
   const {data} = useGetCamerasQuery(null);
   const [isFullScreen, setFullScreen] = useState(false);
   const {width} = useWindowDimensions();
-  const swiperRef = useRef();
-  const [cards, setCards] = useState(<></>);
+  const swiperRef = useRef(null);
+  const [cards, setCards] = useState<Array<any> | null>(null);
 
   const [curIndex, setCurIndex] = useState<number>(
     data && route?.params?.activeCameraId
       ? findCameraIndex(data, route.params.activeCameraId)
       : 0,
   );
-  const prevActiveCameraId = usePrevious(route.params.activeCameraId ?? 0);
+  const prevActiveCameraId = usePrevious(route?.params?.activeCameraId ?? 0);
 
+  /** full screen toggle
+   *
+   */
+  const onClick = useCallback(() => {
+    setFullScreen(!isFullScreen);
+  }, [isFullScreen]);
+
+  // create camera cards
   useEffect(() => {
     if (data) {
       console.log('create cards');
@@ -46,10 +54,10 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
       ));
       setCards(newCards);
     }
-  }, [data]);
+  }, [data, onClick, width]);
   useEffect(() => {
     console.log(
-      `prev=${prevActiveCameraId} cur=${route.params.activeCameraId}`,
+      `prev=${prevActiveCameraId} cur=${route?.params?.activeCameraId}`,
     );
     if (
       prevActiveCameraId &&
@@ -67,7 +75,7 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
       );
       //swiperRef?.current?.scrollBy(newIndex, false);
     }
-  }, [route.params.activeCameraId]);
+  }, [data, prevActiveCameraId, route.params?.activeCameraId]);
   /*useEffect(() => {
     if (prevWidth !== width && prevWidth) {
       console.log('Width changed: ', width);
@@ -91,18 +99,14 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
     setCurIndex(newIndex);
   };
 
-  /** full screen toggle
-   *
-   */
-  const onClick = () => {
-    setFullScreen(!isFullScreen);
-  };
-
-  const swiperKey = `swiper_${route.params.activeCameraId}_${width}`;
+  const swiperKey = `swiper_${route?.params?.activeCameraId}_${width}`;
 
   console.log('cards = ', cards);
   console.log('Current index: ', curIndex, ' key=', swiperKey);
   //console.log("Active idx = ",activeCameraIdx, "rparama=",route?.params?.activeCameraId);
+  if (!cards) {
+    return null;
+  }
   return isFullScreen ? (
     <FullScreenCamera onClick={onClick} cameraId={data[curIndex]?.id} />
   ) : (
@@ -112,7 +116,7 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
           key={swiperKey}
           showsButtons={true}
           ref={swiperRef}
-          index={findCameraIndex(data, route.params.activeCameraId)}
+          index={findCameraIndex(data, route?.params?.activeCameraId)}
           onIndexChanged={onIndexChanged}>
           {cards}
         </Swiper>

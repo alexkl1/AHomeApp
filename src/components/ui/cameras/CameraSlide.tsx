@@ -3,10 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useTheme} from '@rneui/themed';
 import {useGetSnapshotQuery} from '../../../api/apiService';
 import {Image} from 'react-native';
-import {
-  useIsFocused,
-  useNavigation,
-} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {ScreenProps} from '../../../screens/HomeScreen';
 
 const RNFS = require('react-native-fs');
@@ -22,7 +19,7 @@ const CameraSlide = ({data}: Props) => {
     {id: data?.id},
     isFocused
       ? {
-          pollingInterval: 2000,
+          pollingInterval: 1000,
         }
       : {},
   );

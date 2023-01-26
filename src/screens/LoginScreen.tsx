@@ -28,7 +28,7 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errorObject, setErrorObject] = useState<errorObject>(null);
-  const [authUser, {isLoading, isSuccess, error, isError}] = useAuthMutation();
+  const [authUser, {isLoading, error, isError}] = useAuthMutation();
   const authToken = useSelector(selectCurrentToken);
 
   const onPress = () => {
@@ -110,7 +110,8 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
           {isError && (
             <View style={styles.errorBox}>
               <Text style={styles.errorText}>
-                {error?.status} {JSON.stringify(error?.data)}
+                {T.Error_Login}
+                {/*{error?.status} {JSON.stringify(error?.data)}*/}
               </Text>
             </View>
           )}

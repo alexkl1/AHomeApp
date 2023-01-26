@@ -3,25 +3,19 @@
  */
 import React from 'react';
 import {View} from 'react-native';
-import {Text} from '@rneui/themed';
-import {useSelector} from 'react-redux';
 import NoCameras from './NoCameras';
-
-type RootState = {
-  sensors: [] | null;
-};
+import {useGetCamerasQuery} from '../../../api/apiService';
+import CameraSlider from './CameraSlider';
 
 const HomeCameras = () => {
   //const T = useTranslations();
-  const sensors = useSelector((state: RootState) => state?.sensors);
+  //const sensors = useSelector((state: RootState) => state?.sensors);
+  const {data} = useGetCamerasQuery(null);
+  console.log('Camdata = ', data);
 
   return (
     <View>
-      {sensors !== null && sensors?.length > 0 ? (
-        <Text>cameras....</Text>
-      ) : (
-        <NoCameras />
-      )}
+      {data && data?.length > 0 ? <CameraSlider data={data} /> : <NoCameras />}
     </View>
   );
 };

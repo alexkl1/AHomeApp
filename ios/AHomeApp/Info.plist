@@ -28,6 +28,10 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>10.243.161.195</key>
+			<string></string>
+			<key>10.243.22.35</key>
+			<string></string>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

@@ -3,8 +3,8 @@
  */
 type MainTabParams = {
   Home: undefined;
-  Cameras: undefined;
+  Cameras: {activeCameraId?: string};
   Settings: undefined;
-  Sensors: undefined;
+  Sensors: {activeSensorId?: string};
 };
 export default MainTabParams;

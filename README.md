@@ -26,6 +26,10 @@ Application communicates with AHomeApp compatible server.
     - yarn 
     - yarn ios or yarn android
 
+# how to configure
+    - create .env file with following parameters
+        API_URL = <api endpoint>
+
 # How to debug
     - Install latest FB Flipper application. 
     - Or use Google chrome debugger. Application uses Hermes JS engine. https://reactnative.dev/docs/hermes 

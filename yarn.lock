@@ -6114,10 +6114,10 @@ react-native-gesture-handler@^2.8.0:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
-react-native-gradle-plugin@^0.71.11:
-  version "0.71.11"
-  resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.11.tgz#0483740373b9778d058a297ecc61acbd0bd8a63b"
-  integrity sha512-2m9OwAi93MwqBLxCnqqgwlHyatmkyCk9q3XCl2R0DxOLTY5+WuaL/yb8xRyrWZqmRpbIGy+hotF20c2UKMPqWQ==
+react-native-gradle-plugin@^0.71.12:
+  version "0.71.13"
+  resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.13.tgz#6f60ff24ac712554903dfc0ae98475cb280c57a6"
+  integrity sha512-C66LNZAXbU0YDRkWx8d/8kjesdu7fsUAc/3QPJNftSXKEvEtnFZK2aH/rIgu1s5dbTcE0fjhdVPNJMRIfKo61w==
 
 react-native-ratings@^8.1.0:
   version "8.1.0"
@@ -6178,10 +6178,10 @@ react-native-vector-icons@^9.2.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@0.71.0-rc.4:
-  version "0.71.0-rc.4"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.71.0-rc.4.tgz#3d292cc1f0c48c377568de91b64dfedd8ceaacf2"
-  integrity sha512-Q4R+HehRIsswpzsJKyo45xsqW8F2HfDJ4v8TDJajAjssXzhcMk42x32TJz6tOO98LHI/ZvbEF2W0l1yH6eyELQ==
+react-native@0.71.0:
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.71.0.tgz#ce47c3cb6239484fcd686d1f45b363b7014b6c62"
+  integrity sha512-b5oCS/cPVqXT5E2K+0CfQMERAoRu6/6g1no9XRAcjQ4b5JG608WgDh5QgXPHaMSVhAvsJ1DuRoU8C/xqTjQITA==
   dependencies:
     "@jest/create-cache-key-function" "^29.2.1"
     "@react-native-community/cli" "10.0.0"
@@ -6208,7 +6208,7 @@ react-native@0.71.0-rc.4:
     promise "^8.3.0"
     react-devtools-core "^4.26.1"
     react-native-codegen "^0.71.3"
-    react-native-gradle-plugin "^0.71.11"
+    react-native-gradle-plugin "^0.71.12"
     react-refresh "^0.4.0"
     react-shallow-renderer "^16.15.0"
     regenerator-runtime "^0.13.2"

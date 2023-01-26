@@ -21,6 +21,9 @@ type translationKeys = {
   [Property in keyof typeof En]: string;
 };
 
+/**
+ * Translation hook with typescript autocomplete
+ */
 const useTranslations = (): translationKeys => {
   const locale = useSelector((state: RootState) => state?.app?.locale ?? 'en');
   return Object.assign(

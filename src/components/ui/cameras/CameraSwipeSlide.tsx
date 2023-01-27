@@ -1,6 +1,5 @@
 /**
- * Full screen camera view component
- * Refresh using long pooling of screenshots from server
+ * Camera landscape swiper slide
  */
 import React from 'react';
 import {useIsFocused} from '@react-navigation/native';
@@ -13,9 +12,19 @@ type Props = {
   // camera ID
   cameraId: string;
   onClick: () => void;
+  width?: number;
+  height?: number;
 };
 
-const CameraView = ({cameraId, onClick}: Props) => {
+const CameraSwipeSlide = ({cameraId, width, height, onClick}: Props) => {
+  const styles = StyleSheet.create({
+    image: {
+      width: width ?? '100%',
+      resizeMode: 'contain',
+      height: height ?? '100%',
+    },
+  });
+
   const isFocused = useIsFocused();
   const {} = useGetSnapshotQuery(
     {id: cameraId},
@@ -44,8 +53,4 @@ const CameraView = ({cameraId, onClick}: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  image: {width: '100%', resizeMode: 'contain', height: '100%'},
-});
-
-export default CameraView;
+export default CameraSwipeSlide;

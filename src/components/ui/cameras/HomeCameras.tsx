@@ -11,7 +11,7 @@ const HomeCameras = () => {
   //const T = useTranslations();
   //const sensors = useSelector((state: RootState) => state?.sensors);
   const {data} = useGetCamerasQuery(null);
-  console.log('Camdata = ', data);
+  //console.log('Camdata = ', data);
 
   return (
     <View>

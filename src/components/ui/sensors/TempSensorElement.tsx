@@ -6,7 +6,6 @@ import React from 'react';
 import {SensorInfo} from '../../../api/apiTypes';
 import {Text} from '@rneui/themed';
 import {GaugeProgress} from 'react-native-simple-gauge';
-import usePrevious from '../../../hooks/usePrevious';
 
 /*
 map threshold temperature to color
@@ -45,7 +44,7 @@ export function TempSensorElement({data}: TempSensorElementProps) {
   //const prevAdjPercent = usePrevious(adjPercent);
 
   //console.log(`value=${value}, percent=${percent}, bgColor=${bgColor}`);
-  if (!data) {
+  if (!(data && data?.value)) {
     return null;
   }
   return (

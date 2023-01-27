@@ -9,7 +9,7 @@ import {TempSensorElement} from './TempSensorElement';
 
 const HomeSensors = () => {
   const {data} = useGetSensorsQuery(null, {pollingInterval: 5000});
-  console.log('HomeSensors ', data);
+  //console.log('HomeSensors ', data);
 
   return (
     <View>

@@ -6,6 +6,9 @@ import {Image} from 'react-native';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {ScreenProps} from '../../../screens/HomeScreen';
 
+/**
+ * Camera small slide for home screen
+ */
 const RNFS = require('react-native-fs');
 
 type Props = {

@@ -23,10 +23,10 @@ const {store, persistor} = configureAppStore();
 
 const theme = createTheme({
   lightColors: {
-    primary: '#899656',
+    primary: '#516fb9',
   },
   darkColors: {
-    primary: '#344512',
+    primary: '#204183',
   },
   mode: 'dark',
 });

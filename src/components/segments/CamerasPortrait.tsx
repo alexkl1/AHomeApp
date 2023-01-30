@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   portraitContainer: {
     flex: 1,
     //width: '100%',
-    backgroundColor: 'gray',
+    //backgroundColor: 'gray',
     //flexDirection: 'column',
   },
   bottomBox: {

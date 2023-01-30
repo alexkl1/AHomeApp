@@ -32,8 +32,7 @@ type TempSensorElementProps = {
 export function TempSensorElement({data}: TempSensorElementProps) {
   const minDegree = -10;
   const maxDegree = 40;
-  //const value = data?.value;
-  const value = 13;
+  const value = data?.value;
   let bgColor = tempColorMapper[0].color;
   for (const k in tempColorMapper) {
     if (value > tempColorMapper[k].from) {

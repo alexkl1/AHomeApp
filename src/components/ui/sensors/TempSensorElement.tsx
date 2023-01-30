@@ -11,18 +11,20 @@ import {GaugeProgress} from 'react-native-simple-gauge';
 map threshold temperature to color
  */
 
-type TMapper = {
-  [key: string]: string;
+type TemperatureObject = {
+  from: number;
+  color: string;
 };
 
-const tempColorMapper: TMapper = {
-  '0': '#00179b',
-  '7': '#27278c',
-  '12': '#328aa2',
-  '17': '#51a644',
-  '25': '#cea34a',
-  '27': '#ce7844',
-};
+type TemperatureColorMapper = Array<TemperatureObject>;
+
+const tempColorMapper: TemperatureColorMapper = [
+  {from: -100, color: '#00179b'},
+  {from: 12, color: '#328aa2'},
+  {from: 17, color: '#51a644'},
+  {from: 25, color: '#cea34a'},
+  {from: 27, color: '#ce7844'},
+];
 
 type TempSensorElementProps = {
   data: SensorInfo;
@@ -30,15 +32,15 @@ type TempSensorElementProps = {
 export function TempSensorElement({data}: TempSensorElementProps) {
   const minDegree = -10;
   const maxDegree = 40;
-  const value = data?.value;
-  const bgColor = Object.keys(tempColorMapper).reduce(
-    (acc: string, k: string) => {
-      if (value > parseInt(k, 10)) {
-        acc = tempColorMapper[k];
-      }
-      return acc;
-    },
-  );
+  //const value = data?.value;
+  const value = 13;
+  let bgColor = tempColorMapper[0].color;
+  for (const k in tempColorMapper) {
+    if (value > tempColorMapper[k].from) {
+      bgColor = tempColorMapper[k].color;
+    }
+  }
+
   const percent = (value - minDegree) / ((maxDegree - minDegree) / 100);
   const adjPercent = percent > 100 ? 100 : percent < 0 ? 0 : percent;
   //const prevAdjPercent = usePrevious(adjPercent);
@@ -66,7 +68,7 @@ export function TempSensorElement({data}: TempSensorElementProps) {
             rotation={90}
             cropDegree={170}
             tintColor={bgColor}
-            backgroundColor="#b0c4de"
+            backgroundColor="black"
             stroke={[2, 2]} //For a equaly dashed line
             strokeCap="circle"
           />
@@ -98,8 +100,8 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   box: {
-    borderColor: 'black',
-    borderWidth: 1,
+    //borderColor: 'black',
+    //borderWidth: 1,
     width: 120,
     height: 60,
     marginHorizontal: 5,

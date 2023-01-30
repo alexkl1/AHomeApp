@@ -10,23 +10,33 @@
 
 import React from 'react';
 
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import AppNavigationContainer from './src/navigation/AppNavigationContainer';
-import {ThemeProvider} from '@rneui/themed';
-import theme from './src/theme/theme';
+import {createTheme, ThemeProvider} from '@rneui/themed';
 import {Provider} from 'react-redux';
 import configureAppStore from './src/store/configureStore';
 import {PersistGate} from 'redux-persist/integration/react';
 
 const {store, persistor} = configureAppStore();
 
+const theme = createTheme({
+  lightColors: {
+    primary: '#899656',
+  },
+  darkColors: {
+    primary: '#344512',
+  },
+  mode: 'dark',
+});
+
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  //const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = true;
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode ? 'black' : Colors.lighter,
     flex: 1,
   };
 

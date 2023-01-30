@@ -13,6 +13,7 @@ const makeStyleSheet = (props: Props) =>
   StyleSheet.create({
     screen: {
       flex: 1,
+      //backgroundColor: 'black',
       marginHorizontal: props?.noHPadding ? 0 : 5,
       marginVertical: props?.noVPadding ? 0 : 5,
     },

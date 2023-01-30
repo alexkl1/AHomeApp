@@ -1,10 +1,10 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import RootStackNavigator from './RootStackNavigator';
 
 const AppNavigationContainer = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <RootStackNavigator />
     </NavigationContainer>
   );

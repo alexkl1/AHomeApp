@@ -45,12 +45,14 @@ Application communicates with AHomeApp compatible server.
     - use demo/demo to use sample account
 
 # example screenshots
+<table>
+<tr><td><img alt="AhomeApp 1" width="170px" src="./demo/app_1.png"></td>
+    <td><img alt="AhomeApp 2" width="170px" src="./demo/app_2.png"></td>
+</tr>
+<tr><td><img alt="AhomeApp 3" width="170px" src="./demo/app_3.png"></td>
+    <td><img alt="AhomeApp 4" width="170px" src="./demo/app_4.png"></td>
+</tr>
 
-![AHomeApp screenshot 1](demo/app_1.png)
+</table>
 
-![AHomeApp screenshot 1](demo/app_2.png)
-
-![AHomeApp screenshot 1](demo/app_3.png)
-
-![AHomeApp screenshot 1](demo/app_4.png)
 

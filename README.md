@@ -1,4 +1,4 @@
-# AHomeApp
+# AHomeApp mobile application
 Simple home surveillance and monitoring application based on react-native
 
 This application can provide basic monitoring of temperature sensors and stream

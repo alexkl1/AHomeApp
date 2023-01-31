@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.rn0710rc4"
+    namespace "com.ahomeapp"
     defaultConfig {
-        applicationId "com.rn0710rc4"
+        applicationId "com.ahomeapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

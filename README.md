@@ -48,9 +48,10 @@ Application communicates with AHomeApp compatible server.
 <table>
 <tr><td><img alt="AhomeApp 1" width="170px" src="./demo/app_1.png"></td>
     <td><img alt="AhomeApp 2" width="170px" src="./demo/app_2.png"></td>
+    <td><img alt="AhomeApp 3" width="170px" src="./demo/app_3.png"></td>
 </tr>
-<tr><td><img alt="AhomeApp 3" width="170px" src="./demo/app_3.png"></td>
-    <td><img alt="AhomeApp 4" width="170px" src="./demo/app_4.png"></td>
+<tr>
+    <td colspan="3"><img alt="AhomeApp 4" width="510px" src="./demo/app_4.png"></td>
 </tr>
 
 </table>

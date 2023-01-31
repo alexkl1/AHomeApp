@@ -25,10 +25,15 @@ Application communicates with AHomeApp compatible server.
     - Setup development environment https://reactnative.dev/docs/environment-setup
     - yarn 
     - yarn ios or yarn android
+    - deploy backend project 
 
 # how to configure
-    - create .env file with following parameters
-        API_URL = <api endpoint>
+    - create .env in root folder with following parameters
+        API_URL = <backend api endpoint>
+        example: API_URL = http://10.243.164.5:3000/
+
+    
+
 
 # How to debug
     - Install latest FB Flipper application. 

@@ -2,7 +2,8 @@
 Simple home surveillance and monitoring application based on react-native
 
 This application can provide basic monitoring of temperature sensors and stream
-camera snapshots to camera from mobile application
+camera snapshots to mobile application
+
 
 Application communicates with AHomeApp compatible server. 
 
@@ -42,3 +43,14 @@ Application communicates with AHomeApp compatible server.
 
 # demo account
     - use demo/demo to use sample account
+
+# example screenshots
+
+![AHomeApp screenshot 1](demo/app_1.png)
+
+![AHomeApp screenshot 1](demo/app_2.png)
+
+![AHomeApp screenshot 1](demo/app_3.png)
+
+![AHomeApp screenshot 1](demo/app_4.png)
+

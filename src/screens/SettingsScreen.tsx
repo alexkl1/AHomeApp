@@ -2,10 +2,9 @@
  * Settings screen
  */
 import React from 'react';
-import {Button, Text} from '@rneui/themed';
+import {Button, ButtonGroup, Text} from '@rneui/themed';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import MainTabParams from '../navigation/MainTabParams';
-import {ButtonGroup} from '@rneui/themed';
 import {useDispatch, useSelector} from 'react-redux';
 import localeTypes from '../i18n/localetypes';
 import AppScreen from '../components/ui/AppScreen';
@@ -13,19 +12,15 @@ import useTranslations from '../hooks/useTranslations';
 import {StyleSheet, View} from 'react-native';
 import {version} from '../../package.json';
 import {RootState} from '../store/configureStore';
-import {switchLanguage} from '../reducers/appReducer';
-import {logout} from '../reducers/appReducer';
+import {logout, switchLanguage} from '../reducers/appReducer';
 
 type indexMapperType = {
   [Property in localeTypes as string]: number;
 };
 
 type ScreenProps = BottomTabScreenProps<MainTabParams, 'Settings', 'Settings'>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SettingsScreen = ({navigation, route}: ScreenProps) => {
-  console.log('settings');
-  console.log('test');
 
+const SettingsScreen = ({}: ScreenProps) => {
   const dispatch = useDispatch();
   const locale = useSelector((state: RootState) => state?.app.locale ?? 'en');
   const localeButtonIndexMapper: indexMapperType = {en: 0, ru: 1};

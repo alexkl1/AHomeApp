@@ -13,14 +13,15 @@ import ErrorOverlay from '../components/ui/ErrorOverlay';
 import {useAuthMutation} from '../api/apiService';
 import {selectCurrentToken} from '../reducers/appReducer';
 import {useSelector} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
 
 type errorObject = {
   text: string;
 } | null;
 
 type ScreenProps = NativeStackScreenProps<RootStackParams, 'Login'>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const LoginScreen = ({navigation, route}: ScreenProps) => {
+
+const LoginScreen = ({navigation}: ScreenProps) => {
   //console.log('login screen');
   const theme = useTheme();
   //const dispatch = useDispatch();
@@ -30,6 +31,13 @@ const LoginScreen = ({navigation, route}: ScreenProps) => {
   const [errorObject, setErrorObject] = useState<errorObject>(null);
   const [authUser, {isLoading, isError}] = useAuthMutation();
   const authToken = useSelector(selectCurrentToken);
+
+  const isFocused = useIsFocused();
+  // reset login password after login
+  useEffect(() => {
+    setLogin('');
+    setPassword('');
+  }, [isFocused]);
 
   const onPress = () => {
     console.log('login');

@@ -9,12 +9,12 @@ import {
 } from './apiTypes';
 import {RootState} from '../store/configureStore';
 //import type {Pokemon} from './types';
-//import Config from 'react-native-config';
+import Config from 'react-native-config';
 import {setCredentials} from '../reducers/appReducer';
 // @ts-ignore
 
-//const APIURL = Config.API_URL;
-const APIURL = 'http://10.243.161.195:3000';
+const APIURL = Config.API_URL;
+//const APIURL = 'http://10.243.161.195:3000';
 const RNFS = require('react-native-fs');
 // Define a service using a base URL and expected endpoints
 console.log('APIURL=', APIURL);

@@ -32,7 +32,7 @@ Application communicates with AHomeApp compatible server.
     - create .env in root folder with following parameters
         API_URL = <backend api endpoint>
         example: API_URL = http://10.243.164.5:3000/
-
+    make sure http address is whitelisted in Info.plist and Android manifest
     
 
 

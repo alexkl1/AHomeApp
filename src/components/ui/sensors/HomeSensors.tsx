@@ -10,7 +10,7 @@ import useDeviceOrienation from '../../../hooks/useOrientation';
 
 const HomeSensors = () => {
   const {data} = useGetSensorsQuery(null, {pollingInterval: 5000});
-  //console.log('HomeSensors ', data);
+  console.log('HomeSensors ', data);
   const orientation = useDeviceOrienation();
 
   // todo: implement sensor grid

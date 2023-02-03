@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "androidemu": " emulator @Nexus -dns-server 8.8.8.8",
     "ios": "react-native run-ios",
     "ios uninstall": "xcrun simctl uninstall booted com.akolt.ahomeapp.ios\n",
     "lint": "eslint .",

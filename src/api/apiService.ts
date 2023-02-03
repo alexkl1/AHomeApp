@@ -38,15 +38,11 @@ export const appApi = createApi({
       query: () => '/cameras',
     }),
     getSnapshot: builder.query<any, SnapShotRequest>({
-      queryFn: async (
-        args,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        {signal, dispatch, getState},
-      ) => {
-        //console.log('START SNAPSHOT with ', args, extraOptions);
-        const fname = RNFS.DocumentDirectoryPath + `/cam_${args.id}.jpg`;
-        const token = (getState() as RootState)?.app?.authToken;
+      queryFn: async (args, {getState}) => {
         try {
+          //console.log('START SNAPSHOT with ', args, extraOptions);
+          const fname = RNFS.DocumentDirectoryPath + `/cam_${args.id}.jpg`;
+          const token = (getState() as RootState)?.app?.authToken;
           const {promise} = RNFS.downloadFile({
             fromUrl: `${APIURL}/snapshot/?id=${args?.id}`,
             headers: {authorization: `Bearer ${token}`},
@@ -54,12 +50,12 @@ export const appApi = createApi({
             toFile: fname,
             cacheable: false,
           });
+
           const result = await promise;
           //console.log('jobid=', jobId, 'Result=', result);
           return {data: {lastUpdate: Date.now(), result: result}};
         } catch (e) {
-          console.log('Failed to get snapshot');
-          return {error: 'Failed to get snapshot: ' + JSON.stringify(e)};
+          return {data: 'error fetching screenshot'};
         }
       },
     }),

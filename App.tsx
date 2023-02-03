@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {SafeAreaView, StatusBar} from 'react-native';
 
@@ -18,6 +18,8 @@ import {createTheme, ThemeProvider} from '@rneui/themed';
 import {Provider} from 'react-redux';
 import configureAppStore from './src/store/configureStore';
 import {PersistGate} from 'redux-persist/integration/react';
+import axios from 'axios';
+import Config from 'react-native-config';
 
 const {store, persistor} = configureAppStore();
 
@@ -39,6 +41,16 @@ const App = () => {
     backgroundColor: isDarkMode ? 'black' : Colors.lighter,
     flex: 1,
   };
+
+  /**
+   * Android additional ping server before usage
+   */
+  useEffect(() => {
+    console.log('Api ping');
+    axios.get(Config?.API_URL + '/check').then(() => {
+      console.log('Api ping succeeded');
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

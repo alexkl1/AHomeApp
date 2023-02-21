@@ -13,6 +13,7 @@ import {StyleSheet, View} from 'react-native';
 import {version} from '../../package.json';
 import {RootState} from '../store/configureStore';
 import {logout, switchLanguage} from '../reducers/appReducer';
+import {util} from '../api/apiService';
 
 type indexMapperType = {
   [Property in localeTypes as string]: number;
@@ -37,6 +38,8 @@ const SettingsScreen = ({}: ScreenProps) => {
   };
   const onLogout = () => {
     dispatch(logout());
+    console.log('Reset api state');
+    util.resetApiState();
   };
   return (
     <AppScreen title={T.Screen_Settings}>

@@ -10,6 +10,7 @@ import {Cameras} from '../api/apiTypes';
 import FullScreenCamera from '../components/ui/cameras/FullScreenCamera';
 import CamerasLandscape from '../components/segments/CamerasLandscape';
 import CamerasPortrait from '../components/segments/CamerasPortrait';
+import useAuthorized from '../hooks/useAuthorized';
 
 type ScreenProps = BottomTabScreenProps<MainTabParams, 'Cameras', 'Cameras'>;
 
@@ -22,38 +23,13 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
   const [fullScreenCameraId, setFullScreenCameraId] = useState<string | null>(
     null,
   );
-  //const prevActiveCameraId = usePrevious(route?.params?.activeCameraId ?? 0);
-
-  /**
-   * change default camera on screen change
-   */
-  /*useEffect(() => {
-    console.log(
-      `prev=${prevActiveCameraId} cur=${route?.params?.activeCameraId}`,
-    );
-    if (
-      prevActiveCameraId &&
-      data &&
-      prevActiveCameraId !== route.params.activeCameraId
-    ) {
-      const newIndex = findCameraIndex(data, route.params.activeCameraId ?? '');
-      setCurIndex(newIndex);
-      setFullScreen(false);
-      console.log(
-        'Route param changed to ',
-        route.params.activeCameraId,
-        ' newIndex = ',
-        newIndex,
-      );
-    }
-  }, [data, prevActiveCameraId, route.params?.activeCameraId]);
-  */
+  const isAuthorized = useAuthorized();
 
   const onEnableFullScreen = (cameraId: string) => {
     setFullScreen(true);
     setFullScreenCameraId(cameraId);
   };
-  // toogle fullscreen
+  // toggle fullscreen
   const onDisableFullScreen = useCallback(() => {
     setFullScreen(false);
     setFullScreenCameraId(null);
@@ -65,6 +41,10 @@ const CamerasScreen = ({navigation, route}: ScreenProps) => {
   useEffect(() => {
     console.log(`Orientation changed. Landscape = ${isLandscape}`);
   }, [isLandscape]);
+
+  if (!isAuthorized) {
+    return null;
+  }
 
   // show no cameras component
   if (!(data && data?.length > 1)) {

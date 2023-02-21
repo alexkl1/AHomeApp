@@ -6,11 +6,18 @@ import AppScreen from '../components/ui/AppScreen';
 import HomeSensors from '../components/ui/sensors/HomeSensors';
 import useTranslations from '../hooks/useTranslations';
 import HomeCameras from '../components/ui/cameras/HomeCameras';
+import useAuthorized from '../hooks/useAuthorized';
 
 type ScreenProps = BottomTabScreenProps<MainTabParams, 'Home', 'Home'>;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const HomeScreen = ({navigation, route}: ScreenProps) => {
+
+const HomeScreen = ({}: ScreenProps) => {
+  const isAuthorized = useAuthorized();
   const T = useTranslations();
+
+  if (!isAuthorized) {
+    return null;
+  }
+
   return (
     <AppScreen title={T.Screen_Home}>
       <View style={styles.container}>

@@ -8,7 +8,6 @@ import {
   SnapShotRequest,
 } from './apiTypes';
 import {RootState} from '../store/configureStore';
-//import type {Pokemon} from './types';
 import Config from 'react-native-config';
 import {setCredentials} from '../reducers/appReducer';
 // @ts-ignore
@@ -93,6 +92,7 @@ export const {
   reducerPath,
   reducer,
   middleware,
+  util,
 } = appApi;
 
 export default appApi;
